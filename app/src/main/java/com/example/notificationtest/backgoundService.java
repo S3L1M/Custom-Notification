@@ -2,8 +2,6 @@ package com.example.notificationtest;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.os.Handler;
-
 import androidx.annotation.Nullable;
 
 public class backgoundService extends IntentService {
@@ -16,11 +14,14 @@ public class backgoundService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // First-time run
-            }
-        }, 5000);
+
+        // First-time run
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        NotificationUtils.notify(this);
+
     }
 }
