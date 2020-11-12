@@ -22,6 +22,6 @@ public class backgoundService extends IntentService {
             e.printStackTrace();
         }
         NotificationUtils.buildNotification(this);
-        NotificationUtils.updateNotification(getString(R.string.notification_title), getString(R.string.notification_body));
+        NotificationUtils.updateNotification(getString(R.string.notification_title), getString(R.string.notification_body), 33);
     }
 }
