@@ -15,14 +15,16 @@ public class NotificationUtils {
     private static final int PENDING_INTENT_ID = 0x468E68;
     private static final int NOTIFICATION_ID = 0xA1138;
     private static final String NOTIFICATION_CHANNEL_ID = "reminder_notification_channel";
+    private static NotificationManager notificationManager;
+    private static NotificationCompat.Builder notificationBuilder;
 
     private static PendingIntent contentIntent(Context context) {
         Intent startActivityIntent = new Intent(context, EditActivity.class);
         return PendingIntent.getActivity(context, PENDING_INTENT_ID, startActivityIntent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    public static void notify(Context context) {
-        NotificationManager notificationManager = (NotificationManager)
+    public static void buildNotification(Context context) {
+        notificationManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel mChannel = new NotificationChannel(
@@ -31,21 +33,21 @@ public class NotificationUtils {
                     NotificationManager.IMPORTANCE_HIGH);
             notificationManager.createNotificationChannel(mChannel);
         }
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
+        notificationBuilder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                .setContentTitle(context.getString(R.string.notification_title))
-                .setContentText(context.getString(R.string.notification_body))
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(
-                        context.getString(R.string.notification_body)))
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentIntent(contentIntent(context))
-                .setAutoCancel(true);
+                .setContentIntent(contentIntent(context));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN
                 && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             notificationBuilder.setPriority(NotificationCompat.PRIORITY_HIGH);
         }
+    }
 
+    public static void updateNotification(String title, String details) {
+        notificationBuilder
+                .setContentTitle(title)
+                .setContentText(details);
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
     }
 
