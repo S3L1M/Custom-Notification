@@ -21,7 +21,7 @@ public class backgoundService extends IntentService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        NotificationUtils.notify(this);
-
+        NotificationUtils.buildNotification(this);
+        NotificationUtils.updateNotification(getString(R.string.notification_title), getString(R.string.notification_body));
     }
 }
