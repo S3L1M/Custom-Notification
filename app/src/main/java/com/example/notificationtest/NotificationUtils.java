@@ -1,21 +1,21 @@
 package com.example.notificationtest;
 
-import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.widget.ProgressBar;
 import android.widget.RemoteViews;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
-public class NotificationUtils extends Activity {
+public class NotificationUtils {
 
     private static final int PENDING_INTENT_ID = 0x468E68;
     private static final int NOTIFICATION_ID = 0xA1138;
-    private static final String NOTIFICATION_CHANNEL_ID = "reminder_notification_channel";
+    private static final String NOTIFICATION_CHANNEL_ID = "progress_notification_channel";
     private static NotificationManager notificationManager;
     private static NotificationCompat.Builder notificationBuilder;
     private static RemoteViews notificationLayout = new RemoteViews("com.example.notificationtest", R.layout.notification);
