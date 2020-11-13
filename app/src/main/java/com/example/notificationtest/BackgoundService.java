@@ -4,11 +4,11 @@ import android.app.IntentService;
 import android.content.Intent;
 import androidx.annotation.Nullable;
 
-public class backgoundService extends IntentService {
+public class BackgoundService extends IntentService {
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      */
-    public backgoundService() {
+    public BackgoundService() {
         super("backgroundService");
     }
 

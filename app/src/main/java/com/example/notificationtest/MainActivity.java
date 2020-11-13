@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Toast.makeText(this, "Notification will be shown in 5 sec", Toast.LENGTH_LONG).show();
-        startService(new Intent(this, backgoundService.class));
+        startService(new Intent(this, BackgoundService.class));
 
         // End activity
         finish();

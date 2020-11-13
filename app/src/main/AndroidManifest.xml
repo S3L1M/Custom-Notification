@@ -23,7 +23,7 @@
         </activity>
 
         <service
-            android:name=".backgoundService"
+            android:name=".BackgoundService"
             android:exported="false" />
     </application>
 
